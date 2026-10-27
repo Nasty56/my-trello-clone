@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход — Моя доска</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-box {
+            max-width: 400px;
+            margin: 100px auto;
+            background: var(--column-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+        }
+        .auth-box h2 { margin-bottom: 20px; text-align: center; }
+        .auth-box input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--text);
+            outline: none;
+            font-family: inherit;
+        }
+        .auth-box button {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-family: inherit;
+            transition: opacity 0.2s;
+        }
+        .auth-box button:disabled { opacity: 0.7; cursor: not-allowed; }
+        .auth-switch { text-align: center; font-size: 14px; color: var(--text-light); cursor: pointer; }
+        .auth-switch:hover { color: var(--accent); }
+    </style>
+</head>
+<body>
+<header class="header">
+    <h1>Моя доска</h1>
+</header>
+
+<main class="main-content">
+    <div class="auth-box">
+        <h2 id="authTitle">Вход</h2>
+        <input type="email" id="emailInput" placeholder="Email">
+        <input type="password" id="passwordInput" placeholder="Пароль">
+        <button id="authBtn" type="button">Войти</button>
+        <div class="auth-switch" id="switchMode">Нет аккаунта? Зарегистрироваться</div>
+    </div>
+</main>
+
+<script>
+    if (localStorage.getItem('myBoardTheme') === 'dark') {
+        document.body.classList.add('dark');
+    }
+
+    let isLogin = true;
+    const title = document.getElementById('authTitle');
+    const btn = document.getElementById('authBtn');
+    const switchMode = document.getElementById('switchMode');
+    const emailInput = document.getElementById('emailInput');
+    const passwordInput = document.getElementById('passwordInput');
+
+    switchMode.addEventListener('click', () => {
+        isLogin = !isLogin;
+        title.textContent = isLogin ? 'Вход' : 'Регистрация';
+        btn.textContent = isLogin ? 'Войти' : 'Зарегистрироваться';
+        switchMode.textContent = isLogin ? 'Нет аккаунта? Зарегистрироваться' : 'Уже есть аккаунт? Войти';
+    });
+
+    btn.addEventListener('click', async function(e) {
+        e.preventDefault(); // Чтобы страница не перезагружалась
+
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        if (email === '' || password === '') {
+            alert('Заполните email и пароль!');
+            return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Загрузка...';
+
+        const url = isLogin ? 'http://localhost:8080/api/login' : 'http://localhost:8080/api/register';
+
+        try {
+            const res = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, password: password })
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                if (isLogin) {
+                    localStorage.setItem('myBoardUserId', data.userId);
+                    localStorage.setItem('myBoardEmail', data.email);
+                    window.location.href = 'index.html';
+                } else {
+                    alert('Регистрация успешна! Теперь войдите.');
+                    switchMode.click();
+                }
+            } else {
+                alert(data.error || 'Ошибка: сервер отклонил запрос');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('ОШИБКА: Java-сервер не запущен или недоступен! Открой IntelliJ и нажми Run.');
+        } finally {
+            btn.disabled = false;
+            btn.textContent = isLogin ? 'Войти' : 'Зарегистрироваться';
+        }
+    });
+
+    passwordInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            btn.click();
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+.profile-header {
+    background: var(--column-bg);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(69, 40, 22, 0.08);
+}
+
+.profile-avatar-large {
+    width: 120px;
+    height: 120px;
+    background: var(--bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--accent);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.profile-avatar-large img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+}
+
+.profile-details h2 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.profile-details p {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.profile-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: var(--bg);
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    border: 1px solid var(--border);
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(69, 40, 22, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    backdrop-filter: blur(4px);
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: var(--column-bg);
+    padding: 24px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 450px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    border: 1px solid var(--border);
+}
+
+.modal-content h3 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.options-grid {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.option-btn {
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+}
+
+.option-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.option-btn.text-btn {
+    font-size: 14px;
+    font-weight: 600;
+    width: auto;
+    height: auto;
+    padding: 10px 20px;
+    color: var(--text);
+    flex-direction: column;
+    gap: 5px;
+}
+
+.option-btn.text-btn span {
+    font-size: 20px;
+}
+
+.option-btn:hover { transform: scale(1.05); }
+.option-btn.active {
+    border-color: var(--accent);
+    background: var(--column-bg);
+    box-shadow: 0 0 0 2px var(--accent);
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 16px;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-actions button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: inherit;
+}
+
+.btn-cancel { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+.btn-save { background: var(--accent); color: var(--bg); }
+
+.settings-list {
+    background: var(--column-bg);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(69, 40, 22, 0.08);
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+.setting-text h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text);
+}
+
+.setting-text p {
+    font-size: 14px;
+    color: var(--text-light);
+}

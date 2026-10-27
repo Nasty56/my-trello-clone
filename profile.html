@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль — Моя доска</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+<header class="header">
+    <h1>Профиль</h1>
+</header>
+
+<main class="main-content">
+    <div class="page-container">
+
+        <div class="profile-header">
+            <div class="profile-avatar-large" id="avatarDisplay">
+                <img id="avatarImg" src="лиса.png" alt="avatar">
+            </div>
+            <div class="profile-details">
+                <h2 id="userEmail">Загрузка...</h2>
+                <p>Ваш персональный профиль</p>
+                <div class="profile-tags">
+                    <span class="tag" id="displayGender">Пол</span>
+                    <span class="tag" id="displayAge">Возраст</span>
+                    <span class="tag" id="displayGoal">Цель</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-list">
+            <div class="setting-item">
+                <div class="setting-text">
+                    <h4>Редактировать профиль</h4>
+                    <p>Аватар, пол, возраст и цель</p>
+                </div>
+                <button class="theme-btn" id="openEditBtn">Настроить</button>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-text">
+                    <h4>Тёмная тема</h4>
+                    <p>Изменить оформление</p>
+                </div>
+                <button class="theme-btn" id="themeBtn">Включить</button>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-text">
+                    <h4>Выход</h4>
+                    <p>Завершить сеанс</p>
+                </div>
+                <button class="theme-btn" id="logoutBtn">Выйти</button>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<div class="modal hidden" id="editModal">
+    <div class="modal-content">
+        <h3>Настройка профиля</h3>
+
+        <div class="form-group">
+            <label>Выберите животное</label>
+            <div class="options-grid" id="animalOptions">
+                <button class="option-btn active" data-type="avatar" data-value="лиса">
+                    <img src="лиса.png" alt="Лиса">
+                </button>
+                <button class="option-btn" data-type="avatar" data-value="сова">
+                    <img src="сова.png" alt="Сова">
+                </button>
+                <button class="option-btn" data-type="avatar" data-value="ёж">
+                    <img src="ёж.png" alt="Ежик">
+                </button>
+                <button class="option-btn" data-type="avatar" data-value="олень">
+                    <img src="олень.png" alt="Олень">
+                </button>
+                <button class="option-btn" data-type="avatar" data-value="белка">
+                    <img src="белка.png" alt="Белка">
+                </button>
+                <button class="option-btn" data-type="avatar" data-value="медведь">
+                    <img src="медведь.png" alt="Медведь">
+                </button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Пол</label>
+            <div class="options-grid" id="genderOptions">
+                <button class="option-btn text-btn active" data-type="gender" data-value="Мужской">Мужской</button>
+                <button class="option-btn text-btn" data-type="gender" data-value="Женский">Женский</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Возраст</label>
+            <input type="number" id="ageInput" placeholder="Введите ваш возраст" min="1" max="100" value="18">
+        </div>
+
+        <div class="form-group">
+            <label>Цель</label>
+            <div class="options-grid" id="goalOptions">
+                <button class="option-btn text-btn active" data-type="goal" data-value="Ударный режим 7 дней">
+                    <span>🔥</span> 7 дней
+                </button>
+                <button class="option-btn text-btn" data-type="goal" data-value="Ударный режим 14 дней">
+                    <span>🔥</span> 14 дней
+                </button>
+                <button class="option-btn text-btn" data-type="goal" data-value="Ударный режим 21 день">
+                    <span>🔥</span> 21 день
+                </button>
+            </div>
+        </div>
+
+        <div class="modal-actions">
+            <button class="btn-cancel" id="cancelEditBtn">Отмена</button>
+            <button class="btn-save" id="saveProfileBtn">Сохранить</button>
+        </div>
+    </div>
+</div>
+
+<nav class="bottom-nav">
+    <a href="index.html" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+        <span class="nav-text">Доска</span>
+    </a>
+    <a href="stats.html" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        <span class="nav-text">Статистика</span>
+    </a>
+    <a href="profile.html" class="nav-item active">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <span class="nav-text">Профиль</span>
+    </a>
+</nav>
+
+<script>
+    if (localStorage.getItem('myBoardTheme') === 'dark') {
+        document.body.classList.add('dark');
+    }
+</script>
+<script src="profile.js"></script>
+</body>
+</html>
