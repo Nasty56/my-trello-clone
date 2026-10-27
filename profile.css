@@ -237,8 +237,8 @@ input[type="number"]:focus {
         width: 100%;
     }
 
-    /* Скрываем длинный email на телефоне, чтобы он не ломал верстку */
-    .profile-details h2#userEmail {
+    /* Скрываем ЛЮБОЙ заголовок h2 (где лежит email) на телефоне */
+    .profile-details h2 {
         display: none;
     }
 
